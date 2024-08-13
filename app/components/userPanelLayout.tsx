@@ -1,7 +1,8 @@
-import {ReactNode} from "react";
-import useAuth from "@/app/hooks/useAuth";
+import {ReactNode, useEffect} from "react";
 import {useRouter} from "next/router";
 import Sidebar from "@/app/components/sidebar";
+import Cookies from "universal-cookie";
+import useAuth from "@/app/hooks/useAuth";
 
 interface Props {
     children: ReactNode,
@@ -9,14 +10,15 @@ interface Props {
 
 const UserPanelLayout = ({children}: Props) => {
     const router = useRouter()
-    const {user, error, loading} = useAuth()
-
-    if (loading) return <h1>Loading ...</h1>
-
-    if (error) {
-        // show error
-        router.push('/auth/login');
-    }
+    const cookie = new Cookies;
+    const token = cookie.get('verifyToken');
+    useEffect(() => {
+        if (token === undefined) {
+            // show error
+            router.push('/auth/login');
+        }
+    }, [])
+    useAuth()
 
     return (
         <>

@@ -1,12 +1,12 @@
 import React from "react";
 
 import {
-    UserIcon,
     HomeIcon,
+    UserIcon,
+    UsersIcon,
     PowerIcon,
     FolderIcon,
     NewspaperIcon,
-    ChatBubbleLeftIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import SidebarItems from "@/app/components/sidebar/items";
@@ -22,9 +22,9 @@ interface Props {
 export default function Sidebar() {
     const navigation = [
         {name: 'Dashboard', href: '/panel', icon: HomeIcon},
-        {name: 'Article Categories', href: '/panel/articles/categories', icon: FolderIcon},
+        {name: 'Article Categories', href: '/panel/categories', icon: FolderIcon},
         {name: 'Articles', href: '/panel/articles', icon: NewspaperIcon},
-        {name: 'Comments', href: '/panel/comments', icon: ChatBubbleLeftIcon},
+        {name: 'Contacts', href: '/panel/contacts', icon: UsersIcon},
         {name: 'Profile', href: '/panel/profile', icon: UserIcon},
     ];
 
@@ -46,7 +46,6 @@ export default function Sidebar() {
                           d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
                 </svg>
             </button>
-
             <aside id="logo-sidebar"
                    className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
                    aria-label="Sidebar">

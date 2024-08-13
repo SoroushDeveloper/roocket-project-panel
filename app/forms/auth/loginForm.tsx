@@ -6,6 +6,7 @@ import InnerLoginForm from "@/app/components/auth/innerLoginForm";
 import callApi from "@/app/helpers/callApi";
 import ValidationError from "@/app/exceptions/validationError";
 import Router from "next/router";
+import useAuth from "@/app/hooks/useAuth";
 
 const loginFormValidationSchema = yup.object().shape({
     email: yup.string().required().email(),
@@ -26,7 +27,6 @@ const LoginForm = withFormik<LoginFormProps, LoginFormValuesInterface>({
         try {
             const res = await callApi().post('/login', values);
             if (res.status === 200) {
-                console.log(res)
                 props.setToken(res.data.token);
                 await Router.push('/panel')
             }

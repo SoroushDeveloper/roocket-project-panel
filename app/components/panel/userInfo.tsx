@@ -1,23 +1,22 @@
-import {useAppDispatch, useAppSelector} from "@/app/hooks";
-import {selectUser, updateUser} from "@/app/store/auth";
+import {useAppSelector} from "@/app/hooks";
+import {selectUser} from "@/app/store/auth";
 import {removeLoginToken} from "@/app/helpers/auth";
 import {useRouter} from "next/router";
 import Link from "next/link";
 
 const UserInfo = () => {
-    const dispatch = useAppDispatch();
-
     const user = useAppSelector(selectUser)
     const router = useRouter();
     const logoutHandler = async () => {
-        // dispatch(updateUser())
         await removeLoginToken();
         await router.push('/auth/login');
     }
     return (
         <>
             <div className="flex justify-between items-center p-5">
-                <h2>User : {user}</h2>
+                <h2>
+                    User : {user}
+                </h2>
                 <div>
                     <Link href="/panel/profile">
                         <button
