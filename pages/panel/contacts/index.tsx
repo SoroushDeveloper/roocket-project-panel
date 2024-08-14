@@ -1,10 +1,11 @@
 import {NextPageWithLayout} from "@/pages/_app";
 import UserPanelLayout from "@/app/components/userPanelLayout";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import callApi from "@/app/helpers/callApi";
 import Cookies from "universal-cookie";
 import Contact from "@/app/models/contact";
-import ContactItem from "@/app/components/panel/contacts/item";
+import NoData from "@/app/components/shared/noData";
+import ContactTable from "@/app/components/panel/contacts/table";
 
 const states = [
     'All',
@@ -15,7 +16,6 @@ const states = [
 const Contacts: NextPageWithLayout = () => {
     const cookie = new Cookies;
     const token = cookie.get('verifyToken');
-    const [category, setCategory] = useState('All')
     const [contacts, setContacts] = useState<Contact[]>([])
     const [filteredContacts, setFilteredContacts] = useState<Contact[]>([])
     const getContacts = async () => {
@@ -55,7 +55,6 @@ const Contacts: NextPageWithLayout = () => {
         }
     }
     const changeStateHandler = (value: string) => {
-        setCategory(value)
         let newContacts = []
         newContacts = contacts.filter(function (contact) {
             return value == 'All' || (value == 'Reviewed' && contact.is_reviewed) || (value == 'Pending' && !contact.is_reviewed);
@@ -68,48 +67,22 @@ const Contacts: NextPageWithLayout = () => {
                 <h1 className="text-4xl">
                     Contacts
                 </h1>
-                <select id="categories" name="category"
-                        onChange={(e) => changeStateHandler(e.target.value)}
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-min p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select id="categories" name="category" disabled={contacts.length == 0}
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-min p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        onChange={(e) => changeStateHandler(e.target.value)}>
                     {
                         states.map((state, key) =>
-                            <option key={key} value={state} selected={state == category}>
+                            <option key={key} value={state}>
                                 {state}
                             </option>)
                     }
                 </select>
             </div>
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
-                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" className="px-6 py-3">
-                            ID
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            Name
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            Email
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            Submit Date & Time
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            Review Status
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            Operations
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {filteredContacts.map((contact: Contact, key) => (
-                        <ContactItem key={key} contact={contact} deleteHandler={deleteReview}/>
-                    ))}
-                    </tbody>
-                </table>
-            </div>
+            {
+                filteredContacts.length > 0
+                    ? <ContactTable contacts={filteredContacts} deleteReview={deleteReview}/>
+                    : <NoData/>
+            }
         </div>
     )
 }

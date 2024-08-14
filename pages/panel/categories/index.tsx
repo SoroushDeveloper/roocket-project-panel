@@ -4,27 +4,31 @@ import React, {useEffect, useState} from "react";
 import Category from "@/app/models/category";
 import callApi from "@/app/helpers/callApi";
 import Cookies from "universal-cookie";
-import CategoryItem from "@/app/components/panel/categories/item";
 import CreateCategory from "@/app/components/panel/categories/create";
+import Fail from "@/app/components/toasts/fail";
+import Success from "@/app/components/toasts/success";
+import NoData from "@/app/components/shared/noData";
+import CategoryTable from "@/app/components/panel/categories/table";
 
 const Categories: NextPageWithLayout = () => {
     const cookie = new Cookies;
+    const token = cookie.get('verifyToken');
     const [showModal, setShowModal] = useState(false);
     const [categories, setCategories] = useState<Category[]>([])
     const [filteredCategories, setFilteredCategories] = useState<Category[]>([])
     const getCategories = async () => {
         try {
-            const res = await callApi().get('/article-category', {
+            const res = await callApi().get('article-category', {
                 headers: {
-                    Authorization: 'Bearer ' + cookie.get('verifyToken'),
+                    Authorization: 'Bearer ' + token,
                 }
             });
             if (res.status === 200) {
                 setCategories(res.data.data.data);
                 setFilteredCategories(res.data.data.data);
             }
-        } catch (error) {
-            console.log(error);
+        } catch (error: any) {
+            Fail(error.message)
         }
     }
     useEffect(() => {
@@ -49,6 +53,26 @@ const Categories: NextPageWithLayout = () => {
         }
         setCategories(newCategories);
     };
+    const deleteCategory = async (targetContact: any) => {
+        const id = targetContact.target.id;
+        try {
+            const res = await callApi().delete('article-category/' + id, {
+                headers: {
+                    Authorization: 'Bearer ' + token,
+                }
+            })
+            if (res.status == 200) {
+                const newCategoryList = categories.filter(function (category) {
+                    return category.id != id;
+                })
+                setCategories(newCategoryList)
+                Success('Category deleted successfully')
+            }
+        } catch (error: any) {
+            Fail(error.message)
+        }
+    }
+
     return (
         <div>
             <div className="flex flex-col sm:flex-row justify-between items-center">
@@ -80,28 +104,12 @@ const Categories: NextPageWithLayout = () => {
                     Create New Category
                 </button>
             </div>
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
-                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" className="px-6 py-3">
-                            ID
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            Title
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            Operations
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {filteredCategories.map((category: Category, key) => (
-                        <CategoryItem category={category} key={key}/>
-                    ))}
-                    </tbody>
-                </table>
-            </div>
+            {
+                filteredCategories.length > 0
+                    ? <CategoryTable categories={filteredCategories} deleteCategory={deleteCategory}/>
+                    : <NoData/>
+            }
+
             <CreateCategory showModal={showModal} hideModal={hideModalHandler} setNewCategory={handleSetNewCategory}/>
         </div>
     )
