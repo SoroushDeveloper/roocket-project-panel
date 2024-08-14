@@ -27,7 +27,6 @@ export default function Sidebar() {
         setShowSidebar(!showSidebar)
     }
     const logoutHandler = async () => {
-        // dispatch(updateUser())
         await removeLoginToken();
         await router.push('/auth/login');
     }

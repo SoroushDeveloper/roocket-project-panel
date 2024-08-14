@@ -4,7 +4,7 @@ import {removeLoginToken} from "@/app/helpers/auth";
 import {useRouter} from "next/router";
 import Link from "next/link";
 
-const UserInfo = () => {
+const Index = () => {
     const user = useAppSelector(selectUser)
     const router = useRouter();
     const logoutHandler = async () => {
@@ -13,11 +13,11 @@ const UserInfo = () => {
     }
     return (
         <>
-            <div className="flex justify-between items-center p-5">
+            <div className="flex flex-col sm:flex-row justify-between items-center p-5">
                 <h2>
-                    User : {user}
+                    Welcome {user}
                 </h2>
-                <div>
+                <div className="mt-5 sm:mt-0">
                     <Link href="/panel/profile">
                         <button
                             className="mr-5 bg-none text-yellow-500 border-yellow-500 border-2 hover:bg-yellow-500 hover:text-white dark:hover:text-black rounded p-2">
@@ -35,4 +35,4 @@ const UserInfo = () => {
     )
 }
 
-export default UserInfo
+export default Index
