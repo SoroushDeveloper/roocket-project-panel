@@ -79,7 +79,7 @@ const Categories: NextPageWithLayout = () => {
                 <h1 className="text-4xl">
                     Article Categories
                 </h1>
-                <div className="w-96 mt-3 sm:mt-0">
+                <div className="w-80 sm:w-96 mt-3 sm:mt-0">
                     <label htmlFor="default-search"
                            className="text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                     <div className="relative">
