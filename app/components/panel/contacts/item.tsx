@@ -2,8 +2,8 @@ import Contact from "@/app/models/contact";
 import moment from "moment/moment";
 
 import {
-    CheckIcon,
-    XMarkIcon,
+    InformationCircleIcon,
+    TrashIcon,
 } from "@heroicons/react/24/outline";
 import React, {useState} from "react";
 import callApi from "@/app/helpers/callApi";
@@ -57,14 +57,20 @@ export default function ContactItem({contact, deleteHandler}: { contact: Contact
                 {/*}*/}
             </th>
             <th className="px-6 py-4">
-                <div className="flex flex-col sm:flex-row justify-start items-stretch sm:items-center">
+                <div className="flex justify-start items-stretch sm:items-center">
                     <button type="button"
-                            className="rounded bg-none border-2 border-cyan-500 p-2 text-cyan-500 hover:bg-cyan-500 hover:text-gray-100 hover:dark:text-gray-900">
-                        Details
+                            className="rounded flex items-center bg-none border-2 border-cyan-500 p-2 text-cyan-500 hover:bg-cyan-500 hover:text-gray-100 hover:dark:text-gray-900">
+                        <InformationCircleIcon className="flex-shrink-0 h-5 w-5"/>
+                        <span className="hidden sm:block sm:ml-1">
+                            Details
+                        </span>
                     </button>
                     <button type="button" onClick={deleteHandler} id={contact.id.toString()}
-                            className="mt-2 sm:mt-0 sm:ml-5 rounded bg-none border-2 border-red-500 p-2 text-red-500 hover:bg-red-500 hover:text-gray-100 hover:dark:text-gray-900">
-                        Delete
+                            className="ml-2 sm:ml-5 rounded flex items-center bg-none border-2 border-red-500 p-2 text-red-500 hover:bg-red-500 hover:text-gray-100 hover:dark:text-gray-900">
+                        <TrashIcon className="flex-shrink-0 h-5 w-5"/>
+                        <span className="hidden sm:block sm:ml-1">
+                            Delete
+                        </span>
                     </button>
                 </div>
             </th>
