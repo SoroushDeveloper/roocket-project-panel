@@ -5,10 +5,11 @@ import Category from "@/app/models/category";
 import callApi from "@/app/helpers/callApi";
 import Cookies from "universal-cookie";
 import CategoryItem from "@/app/components/panel/categories/item";
-import Contact from "@/app/models/contact";
+import CreateCategory from "@/app/components/panel/categories/create";
 
 const Categories: NextPageWithLayout = () => {
     const cookie = new Cookies;
+    const [showModal, setShowModal] = useState(false);
     const [categories, setCategories] = useState<Category[]>([])
     const [filteredCategories, setFilteredCategories] = useState<Category[]>([])
     const getCategories = async () => {
@@ -28,13 +29,26 @@ const Categories: NextPageWithLayout = () => {
     }
     useEffect(() => {
         getCategories()
-    }, [])
+    }, [categories])
     const searchHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
         const newCategories = categories.filter(function (category) {
+            // @ts-ignore
             return category.title.includes(e.target.value)
         })
         setFilteredCategories(newCategories)
     }
+    const showModalHandler = () => {
+        setShowModal(true);
+    }
+    const hideModalHandler = () => {
+        setShowModal(false);
+    }
+    const handleSetNewCategory = (data: Category) => {
+        const newCategories = {
+            ...categories, data
+        }
+        setCategories(newCategories);
+    };
     return (
         <div>
             <div className="flex flex-col sm:flex-row justify-between items-center">
@@ -61,7 +75,7 @@ const Categories: NextPageWithLayout = () => {
                         </button>
                     </div>
                 </div>
-                <button type="button"
+                <button type="button" onClick={showModalHandler}
                         className="mt-3 sm:mt-0 rounded bg-none border-2 border-blue-500 p-2 text-blue-500 hover:bg-blue-500 hover:text-gray-100 hover:dark:text-gray-900">
                     Create New Category
                 </button>
@@ -88,6 +102,7 @@ const Categories: NextPageWithLayout = () => {
                     </tbody>
                 </table>
             </div>
+            <CreateCategory showModal={showModal} hideModal={hideModalHandler} setNewCategory={handleSetNewCategory}/>
         </div>
     )
 }

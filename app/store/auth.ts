@@ -1,10 +1,9 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {RootState} from "@/app/store/index";
-import User from "@/app/models/user";
 
 interface AuthState {
     verifyToken?: string
-    user?: User
+    user?: string
 }
 
 const initialState: AuthState = {
@@ -19,7 +18,7 @@ export const authSlice = createSlice({
         updateVerifyToken: (state, action: PayloadAction<string | undefined>) => {
             state.verifyToken = action.payload;
         },
-        updateUser: (state, action: PayloadAction<User>|undefined) => {
+        updateUser: (state, action: PayloadAction<string>|undefined) => {
             state.user = action?.payload ?? undefined
         }
     }
