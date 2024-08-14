@@ -47,7 +47,7 @@ export default function Sidebar() {
                    className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform shadow-2xl shadow-gray-100 dark:shadow-gray-900 sm:shadow-none ${!showSidebar ? '-translate-x-full' : ''} sm:translate-x-0`}
                    aria-label="Sidebar">
                 <div className="h-full px-3 py-4 overflow-y-auto bg-gray-100 dark:bg-gray-900 sm:mt-4 sm:ml-2 rounded">
-                    <div className="flex justify-start items-end mb-5">
+                    <div className="flex justify-start items-center mb-5">
                         <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar"
                                 aria-controls="logo-sidebar"
                                 type="button" onClick={showSidebarHandler}

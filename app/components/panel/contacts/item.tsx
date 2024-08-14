@@ -5,7 +5,7 @@ import {
     CheckIcon,
     XMarkIcon,
 } from "@heroicons/react/24/outline";
-import React, {ChangeEventHandler, useState} from "react";
+import React, {useState} from "react";
 import callApi from "@/app/helpers/callApi";
 import Cookies from "universal-cookie";
 
@@ -57,14 +57,16 @@ export default function ContactItem({contact, deleteHandler}: { contact: Contact
                 {/*}*/}
             </th>
             <th className="px-6 py-4">
-                <button type="button"
-                        className="rounded bg-none border-2 border-cyan-500 p-2 text-cyan-500 hover:bg-cyan-500 hover:text-gray-100 hover:dark:text-gray-900">
-                    Details
-                </button>
-                <button type="button" onClick={deleteHandler} id={contact.id.toString()}
-                        className="ml-5 rounded bg-none border-2 border-red-500 p-2 text-red-500 hover:bg-red-500 hover:text-gray-100 hover:dark:text-gray-900">
-                    Delete
-                </button>
+                <div className="flex flex-col sm:flex-row justify-center items-stretch">
+                    <button type="button"
+                            className="rounded bg-none border-2 border-cyan-500 p-2 text-cyan-500 hover:bg-cyan-500 hover:text-gray-100 hover:dark:text-gray-900">
+                        Details
+                    </button>
+                    <button type="button" onClick={deleteHandler} id={contact.id.toString()}
+                            className="mt-2 sm:mt-0 sm:ml-5 rounded bg-none border-2 border-red-500 p-2 text-red-500 hover:bg-red-500 hover:text-gray-100 hover:dark:text-gray-900">
+                        Delete
+                    </button>
+                </div>
             </th>
         </tr>
     )
