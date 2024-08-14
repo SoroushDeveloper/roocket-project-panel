@@ -17,6 +17,7 @@ const useAuth = () => {
         });
     })
 
+    // @ts-ignore
     dispatch(updateUser(data?.data?.name))
 
     return {user: data?.data?.name, error, loading: !data && !error}
