@@ -11,7 +11,7 @@ export default function CategoryItem({category, deleteHandler}: { category: Cate
                 {category.title}
             </th>
             <th className="px-6 py-4">
-                <div className="flex flex-col sm:flex-row justify-center items-stretch">
+                <div className="flex flex-col sm:flex-row justify-start items-stretch">
                     <button type="button"
                             className="rounded bg-none border-2 border-yellow-500 p-2 text-yellow-500 hover:bg-yellow-500 hover:text-gray-100 hover:dark:text-gray-900">
                         Edit

@@ -57,7 +57,7 @@ export default function ContactItem({contact, deleteHandler}: { contact: Contact
                 {/*}*/}
             </th>
             <th className="px-6 py-4">
-                <div className="flex flex-col sm:flex-row justify-center items-stretch">
+                <div className="flex flex-col sm:flex-row justify-start items-stretch sm:items-center">
                     <button type="button"
                             className="rounded bg-none border-2 border-cyan-500 p-2 text-cyan-500 hover:bg-cyan-500 hover:text-gray-100 hover:dark:text-gray-900">
                         Details
