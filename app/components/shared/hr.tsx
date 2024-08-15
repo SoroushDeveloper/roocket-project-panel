@@ -1,5 +1,5 @@
-export default function Hr() {
+export default function Hr({my = true}: { my: boolean }) {
     return (
-        <hr className="my-5 border-gray-400 dark:border-gray-600"/>
+        <hr className={`${my ? 'my-5' : ''} border-gray-400 dark:border-gray-600`}/>
     )
 }

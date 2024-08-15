@@ -14,6 +14,7 @@ import SidebarItems from "@/app/components/sidebar/items";
 import {removeLoginToken} from "@/app/helpers/auth";
 import router from "next/router";
 import Link from "next/link";
+import Hr from "@/app/components/shared/hr";
 
 export default function Sidebar() {
     const navigation = [
@@ -51,13 +52,14 @@ export default function Sidebar() {
                         <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar"
                                 aria-controls="logo-sidebar"
                                 type="button" onClick={showSidebarHandler}
-                                className="inline-flex items-center ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                                className="inline-flex items-center me-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                             <span className="sr-only">Open sidebar</span>
                             <XMarkIcon className="flex-shrink-0 h-6 w-6"/>
                         </button>
-                        <Link href="/panel" className="flex justify-start items-center ps-2.5">
+                        <Link href="/panel"
+                              className="flex justify-start items-center border-gray-400 dark:border-gray-600 border-l-2 pl-3 sm:border-none">
                             <Image src="https://flowbite.com/docs/images/logo.svg"
-                                   className="h-6 me-3 sm:h-7 hidden sm:block"
+                                   className="h-6 sm:h-7 hidden sm:block"
                                    alt="Flowbite Logo" width="60" height="60"/>
                             <span
                                 className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
@@ -65,7 +67,7 @@ export default function Sidebar() {
                         </span>
                         </Link>
                     </div>
-                    <hr/>
+                    <Hr my={false}/>
                     <div className="flex flex-col justify-between">
                         <ul className="space-y-2 font-medium mt-3 w-56">
                             {navigation.slice(0, 4).map((nav, key) =>
