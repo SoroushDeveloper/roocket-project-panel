@@ -36,7 +36,7 @@ const Login: NextPageWithLayout = () => {
                             <h1 className="text-xl text-center sm:text-start font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                                 Login to your account
                             </h1>
-                            <Hr/>
+                            <Hr my={true}/>
                             <LoginForm setToken={setVerifyToken}/>
                         </div>
                     </div>
