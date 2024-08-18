@@ -4,8 +4,8 @@ import {removeLoginToken} from "@/app/helpers/auth";
 import {useRouter} from "next/router";
 import Link from "next/link";
 
-const Index = () => {
-    const user = useAppSelector(selectUser)
+const UserInfo = () => {
+    const user = useAppSelector(selectUser);
     const router = useRouter();
     const logoutHandler = async () => {
         await removeLoginToken();
@@ -35,4 +35,4 @@ const Index = () => {
     )
 }
 
-export default Index
+export default UserInfo

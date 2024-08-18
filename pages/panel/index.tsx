@@ -1,12 +1,12 @@
 import {NextPageWithLayout} from "@/pages/_app";
 import UserPanelLayout from "@/app/components/userPanelLayout";
-import Index from "@/app/components/panel";
+import UserInfo from "@/app/components/panel/userInfo";
 
 const Panel: NextPageWithLayout = () => {
     return (
         <div>
             <h1>
-                <Index/>
+                <UserInfo/>
             </h1>
         </div>
     )
