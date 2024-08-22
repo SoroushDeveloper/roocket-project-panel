@@ -11,6 +11,9 @@
   "dependencies": {
     "@heroicons/react": "^2.1.5",
     "@reduxjs/toolkit": "^2.2.7",
+    "@tiptap/pm": "^2.6.5",
+    "@tiptap/react": "^2.6.5",
+    "@tiptap/starter-kit": "^2.6.5",
     "axios": "^1.7.3",
     "formik": "^2.4.6",
     "moment": "^2.30.1",

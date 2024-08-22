@@ -1,5 +1,5 @@
 import {ErrorMessage, Field} from "formik";
-import {FC} from "react";
+import React, {FC, useState} from "react";
 
 interface InputProps {
     name: string,
@@ -21,12 +21,13 @@ const Input: FC<InputProps> = ({
     return (
         <>
             <label htmlFor={name}
-                   className={`block text-sm font-medium text-gray-700 dark:text-gray-300 ${labelClassName ?? ''}`}>
+                   className={`block mb-2 text-sm font-medium text-gray-900 dark:text-white ${labelClassName ?? ''}`}>
                 {label}
             </label>
             <Field id={name} name={name} type={type}
-                   className={`mt-1 bg-gray-100 dark:bg-gray-900 appearance-none block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm ${inputClassName ?? ''}`}/>
-            <ErrorMessage name={name} className={`text-red-500 text-sm ${errorClassName ?? ''}`} component="div"/>
+                   className={`bg-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${inputClassName ?? ''}`}/>
+            <ErrorMessage name={name} component="div"
+                          className={`mt-2 p-1 text-center rounded-md opacity-75 bg-red-500 text-gray-100 dark:text-gray-900 text-sm ${errorClassName ?? ''}`}/>
         </>
     );
 

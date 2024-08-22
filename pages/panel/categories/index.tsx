@@ -109,7 +109,6 @@ const Categories: NextPageWithLayout = () => {
                     ? <CategoryTable categories={filteredCategories} deleteCategory={deleteCategory}/>
                     : <NoData/>
             }
-
             <CreateCategory showModal={showModal} hideModal={hideModalHandler} setNewCategory={handleSetNewCategory}/>
         </div>
     )
