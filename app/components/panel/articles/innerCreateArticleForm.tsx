@@ -9,6 +9,7 @@ import Fail from "@/app/components/toasts/fail";
 import Cookies from "universal-cookie";
 import {CheckCircleIcon} from "@heroicons/react/24/solid";
 import Textarea from "../../shared/form/textarea";
+import Checkbox from "../../shared/form/checkbox";
 
 const InnerCreateArticleForm = (props: FormikProps<ArticleFormValuesInterface>) => {
     const cookie = new Cookies;
@@ -46,9 +47,9 @@ const InnerCreateArticleForm = (props: FormikProps<ArticleFormValuesInterface>) 
                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Category
                         </label>
-                        <Field id="categories" name="category_id" as='select'
-                        className="bg-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option>Choose a category</option>
+                        <Field id="categories" name="category_id" as='select' 
+                            className="bg-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option>Choose a category</option>
                             {categories.map((category, key) =>
                                 <option key={key} value={category.id}>{category.title}</option>)}
                         </Field>
@@ -65,13 +66,18 @@ const InnerCreateArticleForm = (props: FormikProps<ArticleFormValuesInterface>) 
                         <Textarea name="summary" label="Summary"/>
                     </div>
                 </div>
-                <div  className="grid gap-6 mb-6 md:grid-cols-1">
-                    <Textarea name="content" label="Content"/>
+                <div className="grid gap-6 mb-6 md:grid-cols-1">
+                    <div>
+                        <Textarea name="content" label="Content"/>
+                    </div>
                 </div>
-                <div  className="grid gap-6 mb-6 md:grid-cols-1">
+                <div className="grid gap-6 mb-6 md:grid-cols-1">
                     <div>
                         <Input name="image_url" label="Image URL"/>
                     </div>
+                </div>
+                <div className="grid gap-6 mb-6 md:grid-cols-1">
+                    <Checkbox name="is_published" label="Publish This Article"/>
                 </div>
                 <div
                     className="flex items-center justify-end pt-5 border-t border-solid border-gray-400 dark:border-gray-600 rounded-b">

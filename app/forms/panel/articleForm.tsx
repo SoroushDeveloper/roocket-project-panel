@@ -3,13 +3,10 @@ import * as yup from 'yup';
 
 import callApi from "@/app/helpers/callApi";
 import ValidationError from "@/app/exceptions/validationError";
-import {ArticleFormValuesInterface, ProfileFormValuesInterface} from "@/app/contracts/panel";
-import InnerProfileForm from "@/app/components/panel/profile/innerProfileForm";
+import {ArticleFormValuesInterface} from "@/app/contracts/panel";
 import Success from "@/app/components/toasts/success";
 import Cookies from "universal-cookie";
 import InnerCreateArticleForm from "@/app/components/panel/articles/innerCreateArticleForm";
-import {Dispatch} from "react";
-import Article from "@/app/models/article";
 import Router from "next/router";
 
 const profileFormValidationSchema = yup.object().shape({
@@ -31,17 +28,17 @@ const cookie = new Cookies;
 const token = cookie.get('verifyToken');
 
 const ProfileForm = withFormik<ArticleFormProps, ArticleFormValuesInterface>({
-    mapPropsToValues: props => ({
-        slug: '',
-        title: '',
-        category_id: 0,
-        is_published: false,
-        keywords: '',
-        description: '',
-        summary: '',
-        content: '',
-        image_url: '',
-    }),
+    // mapPropsToValues: props => ({
+        // slug: '',
+        // title: '',
+        // category_id: 0,
+        // is_published: false,
+        // keywords: '',
+        // description: '',
+        // summary: '',
+        // content: '',
+        // image_url: '',
+    // }),
     validationSchema: profileFormValidationSchema,
     handleSubmit: async (values, {props, setFieldError}) => {
         console.log(values)
