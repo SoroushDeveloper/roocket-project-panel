@@ -1,10 +1,10 @@
 import {NextPageWithLayout} from "@/pages/_app";
 import UserPanelLayout from "@/app/components/userPanelLayout";
 import Hr from "@/app/components/shared/hr";
-import ArticleForm from "@/app/forms/panel/articleForm";
 import React from "react";
 import Link from "next/link";
 import {ChevronLeftIcon} from "@heroicons/react/24/solid";
+import CreateArticleForm from "@/app/forms/panel/article/createArticleForm";
 
 const CreateArticle: NextPageWithLayout = () => {
     return (
@@ -20,7 +20,7 @@ const CreateArticle: NextPageWithLayout = () => {
                 </Link>
             </div>
             <Hr my={true}/>
-            <ArticleForm/>
+            <CreateArticleForm/>
         </div>
     )
 }

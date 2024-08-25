@@ -9,7 +9,7 @@ import Cookies from "universal-cookie";
 import InnerCreateArticleForm from "@/app/components/panel/articles/innerCreateArticleForm";
 import Router from "next/router";
 
-const profileFormValidationSchema = yup.object().shape({
+const createArticleFormValidationSchema = yup.object().shape({
     title: yup.string().required(),
     slug: yup.string().required(),
     category_id: yup.number().required(),
@@ -27,21 +27,20 @@ interface ArticleFormProps {
 const cookie = new Cookies;
 const token = cookie.get('verifyToken');
 
-const ProfileForm = withFormik<ArticleFormProps, ArticleFormValuesInterface>({
+const CreateArticleForm = withFormik<ArticleFormProps, ArticleFormValuesInterface>({
     // mapPropsToValues: props => ({
-        // slug: '',
-        // title: '',
-        // category_id: 0,
-        // is_published: false,
-        // keywords: '',
-        // description: '',
-        // summary: '',
-        // content: '',
-        // image_url: '',
+    // slug: '',
+    // title: '',
+    // category_id: 0,
+    // is_published: false,
+    // keywords: '',
+    // description: '',
+    // summary: '',
+    // content: '',
+    // image_url: '',
     // }),
-    validationSchema: profileFormValidationSchema,
+    validationSchema: createArticleFormValidationSchema,
     handleSubmit: async (values, {props, setFieldError}) => {
-        console.log(values)
         try {
             const res = await callApi().post('/article', values, {
                 headers: {
@@ -60,4 +59,4 @@ const ProfileForm = withFormik<ArticleFormProps, ArticleFormValuesInterface>({
     }
 })(InnerCreateArticleForm)
 
-export default ProfileForm
+export default CreateArticleForm

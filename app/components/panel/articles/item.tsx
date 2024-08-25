@@ -27,13 +27,13 @@ export default function ArticleItem({article}: { article: Article }) {
             </th>
             <th className="px-6 py-4">
                 <div className="flex justify-start items-stretch sm:items-center">
-                    <button type="button"
-                            className="rounded flex items-center bg-none border-2 border-yellow-500 p-2 text-yellow-500 hover:bg-yellow-500 hover:text-gray-100 hover:dark:text-gray-900">
+                    <Link href={`/panel/articles/${article.slug}/edit`}
+                          className="rounded flex items-center bg-none border-2 border-yellow-500 p-2 text-yellow-500 hover:bg-yellow-500 hover:text-gray-100 hover:dark:text-gray-900">
                         <PencilIcon className="flex-shrink-0 h-5 w-5"/>
                         <span className="hidden sm:block sm:ml-1">
                             Edit
                         </span>
-                    </button>
+                    </Link>
                     <button type="button"
                             className="ml-2 sm:ml-5 rounded flex items-center bg-none border-2 border-red-500 p-2 text-red-500 hover:bg-red-500 hover:text-gray-100 hover:dark:text-gray-900">
                         <TrashIcon className="flex-shrink-0 h-5 w-5"/>

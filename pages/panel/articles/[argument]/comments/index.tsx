@@ -15,7 +15,7 @@ const Comments: NextPageWithLayout = () => {
     const cookie = new Cookies;
     const router = useRouter();
     const token = cookie.get('verifyToken');
-    const articleId = router.query.articleId;
+    const articleId = router.query.argument;
     const [showModal, setShowModal] = useState(false);
     const [comments, setComments] = useState<Comment[]>([]);
     const [commentId, setCommentId] = useState<undefined | number>(undefined);

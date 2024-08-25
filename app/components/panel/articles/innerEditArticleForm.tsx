@@ -12,7 +12,7 @@ import Textarea from "../../shared/form/textarea";
 import Checkbox from "../../shared/form/checkbox";
 import TextEditor from "@/app/components/shared/form/textEditor";
 
-const InnerCreateArticleForm = (props: FormikProps<ArticleFormValuesInterface>) => {
+const InnerEditArticleForm = (props: FormikProps<ArticleFormValuesInterface>) => {
     const cookie = new Cookies;
     const token = cookie.get('verifyToken')
     const [categories, setCategories] = useState<Category[]>([])
@@ -102,4 +102,4 @@ const InnerCreateArticleForm = (props: FormikProps<ArticleFormValuesInterface>) 
     )
 }
 
-export default InnerCreateArticleForm
+export default InnerEditArticleForm
