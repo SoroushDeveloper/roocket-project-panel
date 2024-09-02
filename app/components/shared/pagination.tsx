@@ -38,6 +38,10 @@ const Pagination: FC<PaginationProps> = ({currentPage, totalPages, onPageChange}
                                         page == totalPages && !nextPage
                                             ? 'rounded-l-lg'
                                             : ''
+                                    } ${
+                                        page > currentPage + 2 || page < currentPage - 2
+                                            ? 'hidden sm:block'
+                                            : ''
                                     } border-2 border-gray-300 dark:border-gray-700`}>
                                 {page}
                             </button>
