@@ -1,5 +1,5 @@
+import dynamic from 'next/dynamic';
 import React from 'react';
-import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import {FieldInputProps, FormikProps} from 'formik';
 
@@ -7,6 +7,10 @@ interface TextEditorProps {
     field: FieldInputProps<string>;
     form: FormikProps<any>;
 }
+
+const ReactQuill = dynamic(() => import('react-quill'), {
+    ssr: false,
+});
 
 const TextEditor: React.FC<TextEditorProps> = ({field, form}) => {
     const handleChange = (content: string) => {

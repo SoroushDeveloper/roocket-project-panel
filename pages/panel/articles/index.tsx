@@ -7,23 +7,26 @@ import Article from "@/app/models/article";
 import NoData from "@/app/components/shared/noData";
 import ArticleTable from "@/app/components/panel/articles/table";
 import {PlusIcon} from "@heroicons/react/24/solid";
-import Category from "@/app/models/category";
-import Router from "next/router";
 import Link from "next/link";
 import Fail from "@/app/components/toasts/fail";
+import Pagination from "@/app/components/shared/pagination";
 
 const Articles: NextPageWithLayout = () => {
     const cookie = new Cookies;
-    const [articles, setArticles] = useState<Article[]>([])
+    const [totalPages, setTotalPages] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [articles, setArticles] = useState<Article[]>([]);
     const getArticles = async () => {
         try {
-            const res = await callApi().get('/article', {
+            const res = await callApi().get('/article?page=' + currentPage, {
                 headers: {
                     Authorization: 'Bearer ' + cookie.get('verifyToken'),
                 }
             });
             if (res.status === 200) {
                 setArticles(res.data.data.data);
+                setTotalPages(res.data.data.total);
+                setCurrentPage(res.data.data.current_page);
             }
         } catch (error: any) {
             Fail(error.message)
@@ -31,7 +34,7 @@ const Articles: NextPageWithLayout = () => {
     }
     useEffect(() => {
         getArticles()
-    }, [articles])
+    }, [currentPage]);
     return (
         <>
             <div>
@@ -49,7 +52,10 @@ const Articles: NextPageWithLayout = () => {
                 </div>
                 {
                     articles.length > 0
-                        ? <ArticleTable articles={articles}/>
+                        ? <>
+                            <ArticleTable articles={articles}/>
+                            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}/>
+                        </>
                         : <NoData/>
                 }
             </div>

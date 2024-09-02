@@ -29,8 +29,6 @@ const token = cookie.get('verifyToken');
 const ProfileForm = withFormik<ProfileFormProps, ProfileFormValuesInterface>({
     mapPropsToValues: props => ({
         name: '',
-        password: '',
-        confirmation: '',
     }),
     validationSchema: profileFormValidationSchema,
     handleSubmit: async (values, {props, setFieldError}) => {
@@ -51,7 +49,7 @@ const ProfileForm = withFormik<ProfileFormProps, ProfileFormValuesInterface>({
                 const res = await callApi().patch('/profile/update-password',
                     {
                         password: values.password,
-                        "password.confirmation": values.confirmation
+                        password_confirmation: values.confirmation
                     }, {
                         headers: {
                             Authorization: 'Bearer ' + token,
