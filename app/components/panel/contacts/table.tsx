@@ -32,7 +32,7 @@ export default function ContactTable({contacts, deleteReview}: { contacts: Conta
                     </thead>
                     <tbody>
                     {contacts.map((contact: Contact, key) => (
-                        <ContactItem key={key} contact={contact} deleteHandler={deleteReview}/>
+                        <ContactItem key={contact.id} contact={contact} deleteHandler={deleteReview}/>
                     ))}
                     </tbody>
                 </table>
