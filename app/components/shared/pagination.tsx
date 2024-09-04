@@ -30,15 +30,7 @@ const Pagination: FC<PaginationProps> = ({currentPage, totalPages, onPageChange}
                                         currentPage === page
                                             ? 'text-gray-900 dark:text-gray-100 bg-blue-500 border-blue-300'
                                             : 'text-gray-900 dark:text-gray-100 bg-gray-100 dark:bg-gray-900 hover:bg-blue-500'
-                                    } ${
-                                        page == 1 && !prevPage
-                                            ? 'rounded-l-lg'
-                                            : ''
-                                    } ${
-                                        page == totalPages && !nextPage
-                                            ? 'rounded-l-lg'
-                                            : ''
-                                    } ${
+                                    } ${page == 1 && !prevPage ? 'rounded-l-lg' : ''} ${page == totalPages && !nextPage ? 'rounded-r-lg' : ''} ${
                                         page > currentPage + 2 || page < currentPage - 2
                                             ? 'hidden sm:block'
                                             : ''

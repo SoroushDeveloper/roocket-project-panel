@@ -10,6 +10,7 @@ import Success from "@/app/components/toasts/success";
 import NoData from "@/app/components/shared/noData";
 import CategoryTable from "@/app/components/panel/categories/table";
 import Pagination from "@/app/components/shared/pagination";
+import { PlusIcon } from "@heroicons/react/24/solid";
 
 const Categories: NextPageWithLayout = () => {
     const cookie = new Cookies;
@@ -103,8 +104,11 @@ const Categories: NextPageWithLayout = () => {
                     </div>
                 </div>
                 <button type="button" onClick={showModalHandler}
-                        className="mt-3 sm:mt-0 rounded bg-none border-2 border-blue-500 p-2 text-blue-500 hover:bg-blue-500 hover:text-gray-100 hover:dark:text-gray-900">
-                    Create New Category
+                        className="rounded flex items-center bg-none border-2 border-blue-500 p-2 text-blue-500 hover:bg-blue-500 hover:text-gray-100 hover:dark:text-gray-900">
+                    <PlusIcon className="flex-shrink-0 h-5 w-5"/>
+                        <span className="hidden sm:block sm:ml-1">
+                            Create New Category
+                        </span>
                 </button>
             </div>
             {
