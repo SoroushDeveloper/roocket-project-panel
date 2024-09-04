@@ -9,10 +9,13 @@ import Fail from "@/app/components/toasts/fail";
 import Success from "@/app/components/toasts/success";
 import NoData from "@/app/components/shared/noData";
 import CategoryTable from "@/app/components/panel/categories/table";
+import Pagination from "@/app/components/shared/pagination";
 
 const Categories: NextPageWithLayout = () => {
     const cookie = new Cookies;
     const token = cookie.get('verifyToken');
+    const [totalPages, setTotalPages] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
     const [showModal, setShowModal] = useState(false);
     const [categories, setCategories] = useState<Category[]>([])
     const [filteredCategories, setFilteredCategories] = useState<Category[]>([])
@@ -33,7 +36,7 @@ const Categories: NextPageWithLayout = () => {
     }
     useEffect(() => {
         getCategories()
-    }, [categories])
+    }, [categories, currentPage])
     const searchHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
         const newCategories = categories.filter(function (category) {
             // @ts-ignore
@@ -106,7 +109,10 @@ const Categories: NextPageWithLayout = () => {
             </div>
             {
                 filteredCategories.length > 0
-                    ? <CategoryTable categories={filteredCategories} deleteCategory={deleteCategory}/>
+                    ? <>
+                        <CategoryTable categories={filteredCategories} deleteCategory={deleteCategory}/>
+                        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}/>
+                    </>
                     : <NoData/>
             }
             <CreateCategory showModal={showModal} hideModal={hideModalHandler} setNewCategory={handleSetNewCategory}/>
