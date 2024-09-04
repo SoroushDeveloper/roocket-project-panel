@@ -16,13 +16,13 @@ const Categories: NextPageWithLayout = () => {
     const cookie = new Cookies;
     const token = cookie.get('verifyToken');
     const [totalPages, setTotalPages] = useState(1);
+    const [search, setSearch] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [showModal, setShowModal] = useState(false);
-    const [categories, setCategories] = useState<Category[]>([])
-    const [search, setSearch] = useState('')
+    const [categories, setCategories] = useState<Category[]>([]);
     const getCategories = async () => {
         try {
-            const res = await callApi().get('article-category?page=' + currentPage + '&title=' + search, {
+            const res = await callApi().get(`article-category?page=${currentPage}&title=${search}`, {
                 headers: {
                     Authorization: 'Bearer ' + token,
                 }

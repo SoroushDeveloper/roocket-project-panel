@@ -57,8 +57,8 @@ const Contacts: NextPageWithLayout = () => {
                 <h1 className="text-4xl">
                     Contacts
                 </h1>
-                <ul className="flex mt-2 sm:mt-0 items-center text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                    <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600 pr-3">
+                <ul className="flex mt-2 sm:mt-0 items-center text-sm font-medium text-gray-900 bg-white rounded-lg sm:flex dark:bg-gray-700 dark:text-white">
+                    <li className="w-full border-gray-200 border-r dark:border-gray-600 pr-3">
                         <div className="flex items-center ps-3">
                             <input id="horizontal-list-radio-license" type="radio" value="all" name="status" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                    onChange={(e) => setStatus('')} checked={status == ''}/>
@@ -67,7 +67,7 @@ const Contacts: NextPageWithLayout = () => {
                             </label>
                         </div>
                     </li>
-                    <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600 pr-3">
+                    <li className="w-full border-gray-200 border-r dark:border-gray-600 pr-3">
                         <div className="flex items-center ps-3">
                             <input id="horizontal-list-radio-id" type="radio" value="pending" name="status" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                    onChange={(e) => setStatus('0')} checked={status == '0'}/>
@@ -76,7 +76,7 @@ const Contacts: NextPageWithLayout = () => {
                             </label>
                         </div>
                     </li>
-                    <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600 pr-3">
+                    <li className="w-full border-gray-200 dark:border-gray-600 pr-3">
                         <div className="flex items-center ps-3">
                             <input id="horizontal-list-radio-military" type="radio" value="reviewed" name="status" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                    onChange={(e) => setStatus('1')} checked={status == '1'}/>
