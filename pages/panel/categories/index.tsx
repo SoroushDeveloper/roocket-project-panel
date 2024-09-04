@@ -19,17 +19,17 @@ const Categories: NextPageWithLayout = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [showModal, setShowModal] = useState(false);
     const [categories, setCategories] = useState<Category[]>([])
-    const [filteredCategories, setFilteredCategories] = useState<Category[]>([])
+    const [search, setSearch] = useState('')
     const getCategories = async () => {
         try {
-            const res = await callApi().get('article-category', {
+            const res = await callApi().get('article-category?page=' + currentPage + '&title=' + search, {
                 headers: {
                     Authorization: 'Bearer ' + token,
                 }
             });
             if (res.status === 200) {
                 setCategories(res.data.data.data);
-                setFilteredCategories(res.data.data.data);
+                setTotalPages(res.data.data.total);
             }
         } catch (error: any) {
             Fail(error.message)
@@ -37,13 +37,10 @@ const Categories: NextPageWithLayout = () => {
     }
     useEffect(() => {
         getCategories()
-    }, [categories, currentPage])
+    }, [currentPage, search])
     const searchHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        const newCategories = categories.filter(function (category) {
-            // @ts-ignore
-            return category.title.includes(e.target.value)
-        })
-        setFilteredCategories(newCategories)
+        // @ts-ignore
+        setSearch(e.target.value)
     }
     const showModalHandler = () => {
         setShowModal(true);
@@ -106,19 +103,17 @@ const Categories: NextPageWithLayout = () => {
                 <button type="button" onClick={showModalHandler}
                         className="rounded flex items-center bg-none border-2 border-blue-500 p-2 text-blue-500 hover:bg-blue-500 hover:text-gray-100 hover:dark:text-gray-900">
                     <PlusIcon className="flex-shrink-0 h-5 w-5"/>
-                        <span className="hidden sm:block sm:ml-1">
-                            Create New Category
-                        </span>
+                    <span className="hidden sm:block sm:ml-1">
+                        Create New Category
+                    </span>
                 </button>
             </div>
             {
-                filteredCategories.length > 0
-                    ? <>
-                        <CategoryTable categories={filteredCategories} deleteCategory={deleteCategory}/>
-                        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}/>
-                    </>
+                categories.length > 0
+                    ? <CategoryTable categories={categories} deleteCategory={deleteCategory}/>
                     : <NoData/>
             }
+            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}/>
             <CreateCategory showModal={showModal} hideModal={hideModalHandler} setNewCategory={handleSetNewCategory}/>
         </div>
     )

@@ -52,12 +52,10 @@ const Articles: NextPageWithLayout = () => {
                 </div>
                 {
                     articles.length > 0
-                        ? <>
-                            <ArticleTable articles={articles}/>
-                            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}/>
-                        </>
+                        ? <ArticleTable articles={articles}/>
                         : <NoData/>
                 }
+                <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}/>
             </div>
         </>
     )
