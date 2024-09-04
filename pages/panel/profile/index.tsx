@@ -13,7 +13,7 @@ const Profile: NextPageWithLayout = () => {
                 Profile
             </h1>
             <Hr my={true}/>
-            <ProfileForm/>
+            <ProfileForm name={user ?? ''}/>
         </div>
     )
 }

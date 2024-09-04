@@ -2,8 +2,6 @@ import {Form, FormikProps} from "formik";
 
 import Input from "@/app/components/shared/form/input";
 import {ProfileFormValuesInterface} from "@/app/contracts/panel";
-import {useAppSelector} from "@/app/hooks";
-import {selectUser} from "@/app/store/auth";
 
 const InnerProfileForm = (props: FormikProps<ProfileFormValuesInterface>) => {
     return (

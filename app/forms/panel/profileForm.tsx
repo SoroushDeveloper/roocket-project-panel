@@ -20,7 +20,7 @@ const profileFormValidationSchema = yup.object().shape({
 })
 
 interface ProfileFormProps {
-    // setToken: (token: string) => void
+    name: string,
 }
 
 const cookie = new Cookies;
@@ -28,7 +28,7 @@ const token = cookie.get('verifyToken');
 
 const ProfileForm = withFormik<ProfileFormProps, ProfileFormValuesInterface>({
     mapPropsToValues: props => ({
-        name: '',
+        name: props.name,
     }),
     validationSchema: profileFormValidationSchema,
     handleSubmit: async (values, {props, setFieldError}) => {
