@@ -101,9 +101,9 @@ const Categories: NextPageWithLayout = () => {
                     </div>
                 </div>
                 <button type="button" onClick={showModalHandler}
-                        className="rounded flex items-center bg-none border-2 border-blue-500 p-2 text-blue-500 hover:bg-blue-500 hover:text-gray-100 hover:dark:text-gray-900">
+                        className="mt-2 sm:mt-0 rounded flex items-center bg-none border-2 border-blue-500 p-2 text-blue-500 hover:bg-blue-500 hover:text-gray-100 hover:dark:text-gray-900">
                     <PlusIcon className="flex-shrink-0 h-5 w-5"/>
-                    <span className="hidden sm:block sm:ml-1">
+                    <span className="ml-1">
                         Create New Category
                     </span>
                 </button>
