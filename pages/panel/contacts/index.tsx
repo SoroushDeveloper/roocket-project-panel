@@ -27,7 +27,8 @@ const Contacts: NextPageWithLayout = () => {
             });
             if (res.status === 200) {
                 setContacts(res.data.data.data);
-                setTotalPages(res.data.data.total);
+                setTotalPages(res.data.data.last_page);
+                setCurrentPage(res.data.data.current_page);
             }
         } catch (error) {
             console.log(error);

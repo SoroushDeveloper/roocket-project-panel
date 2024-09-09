@@ -29,7 +29,8 @@ const Categories: NextPageWithLayout = () => {
             });
             if (res.status === 200) {
                 setCategories(res.data.data.data);
-                setTotalPages(res.data.data.total);
+                setTotalPages(res.data.data.last_page);
+                setCurrentPage(res.data.data.current_page);
             }
         } catch (error: any) {
             Fail(error.message)
