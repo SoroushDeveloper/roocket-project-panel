@@ -35,7 +35,7 @@ const Contacts: NextPageWithLayout = () => {
     }
     useEffect(() => {
         getContacts()
-    }, [status])
+    }, [status, currentPage])
     const deleteReview = async (targetContact: any) => {
         const id = targetContact.target.id;
         try {
