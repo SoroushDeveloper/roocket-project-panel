@@ -49,6 +49,11 @@ export default function Sidebar() {
                 <span className="sr-only">Logout</span>
                 <PowerIcon className="flex-shrink-0 h-6 w-6"/>
             </button>
+            <Link href="/panel/profile"
+                    className={`inline-flex float-end items-center p-2 mt-2 me-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 ${showSidebar ? 'opacity-0' : ''}`}>
+                <span className="sr-only">Profile</span>
+                <UserIcon className="flex-shrink-0 h-6 w-6"/>
+            </Link>
             <aside id="logo-sidebar"
                    className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform shadow-2xl shadow-gray-100 dark:shadow-gray-900 sm:shadow-none ${!showSidebar ? '-translate-x-full' : ''} sm:translate-x-0`}
                    aria-label="Sidebar">
