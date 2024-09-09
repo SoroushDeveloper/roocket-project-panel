@@ -6,7 +6,6 @@ import InnerLoginForm from "@/app/components/auth/innerLoginForm";
 import callApi from "@/app/helpers/callApi";
 import ValidationError from "@/app/exceptions/validationError";
 import Router from "next/router";
-import useAuth from "@/app/hooks/useAuth";
 
 const loginFormValidationSchema = yup.object().shape({
     email: yup.string().required().email(),
