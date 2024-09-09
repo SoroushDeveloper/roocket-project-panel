@@ -11,6 +11,8 @@ import Success from "@/app/components/toasts/success";
 import CommentItem from "@/app/components/panel/articles/comments/item";
 import ShowComment from "@/app/components/panel/articles/comments/show";
 import Pagination from "@/app/components/shared/pagination";
+import Link from "next/link";
+import {ChevronLeftIcon} from "@heroicons/react/24/solid";
 
 const Comments: NextPageWithLayout = () => {
     const cookie = new Cookies;
@@ -95,11 +97,11 @@ const Comments: NextPageWithLayout = () => {
     return (
         <>
             <div>
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col sm:flex-row justify-between items-center">
                     <h1 className="text-4xl">
                         Article {articleId} Comments
                     </h1>
-                    <div>
+                    <div className="mt-2 sm:mt-0 flex items-center">
                         <select id="categories" name="category" value={status}
                                 className="bg-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 onChange={(e) => setStatus(e.target.value)}>
@@ -108,6 +110,13 @@ const Comments: NextPageWithLayout = () => {
                             <option value="approved">Approved</option>
                             <option value="rejected">Rejected</option>
                         </select>
+                        <Link href="/panel/articles"
+                            className="ml-2 rounded flex items-center bg-none border-2 border-gray-500 p-2 text-gray-500 hover:bg-gray-500 hover:text-gray-100 hover:dark:text-gray-900">
+                            <ChevronLeftIcon className="flex-shrink-0 h-5 w-5 sm:mr-2"/>
+                            <span className="hidden sm:block">
+                                Articles
+                            </span>
+                        </Link>
                     </div>
                 </div>
                 {comments.length > 0
