@@ -10,32 +10,28 @@ import Comment from "@/app/models/comment"
 import Success from "@/app/components/toasts/success";
 import CommentItem from "@/app/components/panel/articles/comments/item";
 import ShowComment from "@/app/components/panel/articles/comments/show";
+import Pagination from "@/app/components/shared/pagination";
 
 const Comments: NextPageWithLayout = () => {
     const cookie = new Cookies;
     const router = useRouter();
     const token = cookie.get('verifyToken');
     const articleId = router.query.argument;
+    const [status, setStatus] = useState('all');
+    const [totalPages, setTotalPages] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
     const [showModal, setShowModal] = useState(false);
     const [comments, setComments] = useState<Comment[]>([]);
     const [commentId, setCommentId] = useState<undefined | number>(undefined);
-    const getComments = async (status = 'all') => {
+    const getComments = async () => {
         try {
-            const res = await callApi().get('article/' + articleId + '/comments', {
+            const res = await callApi().get(`article/${articleId}/comments?page=${currentPage}&status=${status != 'all' ? status : ''}`, {
                 headers: {
                     Authorization: 'Bearer ' + token,
                 }
             });
             if (res.status === 200) {
-                if (status != 'all') {
-                    const uncategorizedComments: Comment[] = res.data.data.data;
-                    const categorizedComments = uncategorizedComments.filter(function (comment) {
-                        return status === 'all' || comment.status_label == status;
-                    })
-                    setComments(categorizedComments);
-                } else {
-                    setComments(res.data.data.data);
-                }
+                setComments(res.data.data.data);
             }
         } catch (error: any) {
             Fail(error.message)
@@ -43,7 +39,7 @@ const Comments: NextPageWithLayout = () => {
     }
     useEffect(() => {
         getComments()
-    }, [])
+    }, [status])
     const setCommentStatus = async (status: string) => {
         try {
             const res = await callApi().patch('comment/' + commentId + '/' + status, {}, {
@@ -102,13 +98,13 @@ const Comments: NextPageWithLayout = () => {
                         Article {articleId} Comments
                     </h1>
                     <div>
-                        <select id="categories" name="category"
+                        <select id="categories" name="category" value={status}
                                 className="bg-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                onChange={(e) => getComments(e.target.value)}>
-                            <option value="all" selected>All</option>
-                            <option value="در انتظار بررسی">Pending</option>
-                            <option value="تایید شده">Approved</option>
-                            <option value="رد شده">Rejected</option>
+                                onChange={(e) => setStatus(e.target.value)}>
+                            <option value="all">All</option>
+                            <option value="waiting">Pending</option>
+                            <option value="approved">Approved</option>
+                            <option value="rejected">Rejected</option>
                         </select>
                     </div>
                 </div>
@@ -148,6 +144,7 @@ const Comments: NextPageWithLayout = () => {
                     )
                     : <NoData/>}
             </div>
+            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}/>
             <ShowComment showModal={showModal} hideModal={hideModalHandler}
                          commentId={commentId} setCommentStatus={setCommentStatus}/>
         </>
