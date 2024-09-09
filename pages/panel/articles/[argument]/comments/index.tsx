@@ -17,7 +17,7 @@ const Comments: NextPageWithLayout = () => {
     const router = useRouter();
     const token = cookie.get('verifyToken');
     const articleId = router.query.argument;
-    const [status, setStatus] = useState('all');
+    const [status, setStatus] = useState('');
     const [totalPages, setTotalPages] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
     const [showModal, setShowModal] = useState(false);
@@ -25,13 +25,15 @@ const Comments: NextPageWithLayout = () => {
     const [commentId, setCommentId] = useState<undefined | number>(undefined);
     const getComments = async () => {
         try {
-            const res = await callApi().get(`article/${articleId}/comments?page=${currentPage}&status=${status != 'all' ? status : ''}`, {
+            const res = await callApi().get(`article/${articleId}/comments?page=${currentPage}&status=${status}`, {
                 headers: {
                     Authorization: 'Bearer ' + token,
                 }
             });
             if (res.status === 200) {
                 setComments(res.data.data.data);
+                setTotalPages(res.data.data.total);
+                setCurrentPage(res.data.data.current_page);
             }
         } catch (error: any) {
             Fail(error.message)
@@ -39,7 +41,7 @@ const Comments: NextPageWithLayout = () => {
     }
     useEffect(() => {
         getComments()
-    }, [status])
+    }, [status, currentPage])
     const setCommentStatus = async (status: string) => {
         try {
             const res = await callApi().patch('comment/' + commentId + '/' + status, {}, {
@@ -101,7 +103,7 @@ const Comments: NextPageWithLayout = () => {
                         <select id="categories" name="category" value={status}
                                 className="bg-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 onChange={(e) => setStatus(e.target.value)}>
-                            <option value="all">All</option>
+                            <option value="">All</option>
                             <option value="waiting">Pending</option>
                             <option value="approved">Approved</option>
                             <option value="rejected">Rejected</option>
