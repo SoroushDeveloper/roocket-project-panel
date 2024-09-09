@@ -101,7 +101,7 @@ const Comments: NextPageWithLayout = () => {
                     <h1 className="text-4xl">
                         Article {articleId} Comments
                     </h1>
-                    <div className="mt-2 sm:mt-0 flex items-center">
+                    <div className="mt-3 sm:mt-0 flex items-center">
                         <Link href="/panel/articles"
                             className="mr-2 rounded flex items-center bg-none border-2 border-gray-500 p-2 text-gray-500 hover:bg-gray-500 hover:text-gray-100 hover:dark:text-gray-900">
                             <ChevronLeftIcon className="flex-shrink-0 h-5 w-5 mr-2"/>
