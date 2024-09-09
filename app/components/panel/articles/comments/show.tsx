@@ -5,7 +5,6 @@ import Fail from "@/app/components/toasts/fail";
 import Comment from "@/app/models/comment"
 import {XCircleIcon, XMarkIcon} from "@heroicons/react/24/outline";
 import {CheckIcon} from "@heroicons/react/24/solid";
-import Success from "@/app/components/toasts/success";
 
 export default function ShowComment({commentId = undefined, setCommentStatus, showModal, hideModal}: {
     commentId: number | undefined,

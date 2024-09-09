@@ -7,6 +7,7 @@ import Contact from "@/app/models/contact";
 import NoData from "@/app/components/shared/noData";
 import ContactTable from "@/app/components/panel/contacts/table";
 import Pagination from "@/app/components/shared/pagination";
+import ShowContact from "@/app/components/panel/contacts/show";
 
 const Contacts: NextPageWithLayout = () => {
     const cookie = new Cookies;
@@ -14,7 +15,9 @@ const Contacts: NextPageWithLayout = () => {
     const [status, setStatus] = useState('');
     const [totalPages, setTotalPages] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
-    const [contacts, setContacts] = useState<Contact[]>([])
+    const [showModal, setShowModal] = useState(false);
+    const [contacts, setContacts] = useState<Contact[]>([]);
+    const [contactId, setContactId] = useState<undefined | number>(undefined);
     const getContacts = async () => {
         try {
             const res = await callApi().get(`/contact${status != '' ? `?is_reviewed=${status}` : ''}`, {
@@ -50,6 +53,15 @@ const Contacts: NextPageWithLayout = () => {
         } catch (error) {
             console.log(error)
         }
+    }
+    const showModalHandler = (id: number) => {
+        setContactId(id);
+        setTimeout(function () {
+            setShowModal(true);
+        }, 500)
+    }
+    const hideModalHandler = () => {
+        setShowModal(false);
     }
     return (
         <div>
@@ -89,10 +101,11 @@ const Contacts: NextPageWithLayout = () => {
             </div>
             {
                 contacts.length > 0
-                    ? <ContactTable contacts={contacts} deleteReview={deleteReview}/>
+                    ? <ContactTable contacts={contacts} deleteReview={deleteReview} showModal={showModalHandler}/>
                     : <NoData/>
             }
             <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}/>
+            <ShowContact showModal={showModal} hideModal={hideModalHandler} contactId={contactId}/>
         </div>
     )
 }

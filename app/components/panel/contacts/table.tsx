@@ -2,7 +2,7 @@ import Contact from "@/app/models/contact";
 import ContactItem from "@/app/components/panel/contacts/item";
 import React from "react";
 
-export default function ContactTable({contacts, deleteReview}: { contacts: Contact[], deleteReview: any }) {
+export default function ContactTable({showModal, contacts, deleteReview}: { showModal: any, contacts: Contact[], deleteReview: any }) {
     return (
         <>
             <div className="relative overflow-x-auto shadow-md rounded-lg mt-5 dark:border-2 dark:border-gray-700">
@@ -31,8 +31,8 @@ export default function ContactTable({contacts, deleteReview}: { contacts: Conta
                     </tr>
                     </thead>
                     <tbody>
-                    {contacts.map((contact: Contact, key) => (
-                        <ContactItem key={contact.id} contact={contact} deleteHandler={deleteReview}/>
+                    {contacts.map((contact: Contact) => (
+                        <ContactItem key={contact.id} contact={contact} deleteHandler={deleteReview} showModal={showModal}/>
                     ))}
                     </tbody>
                 </table>

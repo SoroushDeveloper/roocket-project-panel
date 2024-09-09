@@ -9,7 +9,7 @@ import React, {useState} from "react";
 import callApi from "@/app/helpers/callApi";
 import Cookies from "universal-cookie";
 
-export default function ContactItem({contact, deleteHandler}: { contact: Contact, deleteHandler: any }) {
+export default function ContactItem({showModal, contact, deleteHandler}: { showModal: any, contact: Contact, deleteHandler: any }) {
     const cookie = new Cookies;
     const createdAt = moment(contact.created_at).format('MMMM Do YYYY, h:mm:ss A');
     const [reviewStatus, setReviewStatus] = useState(contact.is_reviewed)
@@ -58,7 +58,7 @@ export default function ContactItem({contact, deleteHandler}: { contact: Contact
             </th>
             <th className="px-6 py-4">
                 <div className="flex justify-start items-stretch sm:items-center">
-                    <button type="button"
+                    <button type="button" onClick={() => showModal(contact.id)}
                             className="rounded flex items-center bg-none border-2 border-cyan-500 p-2 text-cyan-500 hover:bg-cyan-500 hover:text-gray-100 hover:dark:text-gray-900">
                         <InformationCircleIcon className="flex-shrink-0 h-5 w-5"/>
                         <span className="hidden sm:block sm:ml-1">
