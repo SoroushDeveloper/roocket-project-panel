@@ -61,10 +61,10 @@ export default function ShowContact({contactId = undefined, showModal, hideModal
                                             Message : {contact.content}
                                         </p>
                                         <p>
-                                            Submitted At : {createdAt}
-                                        </p>
-                                        <p>
                                             Status : {contact.is_reviewed ? 'Reviewed' : 'Not Reviewed'}
+                                        </p>
+                                        <p className="mt-5 rounded-3xl text-center bg-gray-800 p-2">
+                                            {createdAt}
                                         </p>
                                     </div>
                                     <div className="flex items-center justify-end p-4 border-t border-solid border-gray-400 dark:border-gray-600 rounded-b">
