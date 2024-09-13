@@ -63,7 +63,7 @@ export default function ShowContact({contactId = undefined, showModal, hideModal
                                         <p>
                                             Status : {contact.is_reviewed ? 'Reviewed' : 'Not Reviewed'}
                                         </p>
-                                        <p className="mt-5 rounded-3xl text-center bg-gray-800 p-2">
+                                        <p className="mt-5 rounded-3xl text-center bg-gray-200 dark:bg-gray-800 p-2">
                                             {createdAt}
                                         </p>
                                     </div>
