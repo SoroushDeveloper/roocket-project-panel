@@ -4,10 +4,8 @@ import UserInfo from "@/app/components/panel/userInfo";
 
 const Panel: NextPageWithLayout = () => {
     return (
-        <div>
-            <h1>
-                <UserInfo/>
-            </h1>
+        <div>            
+            <UserInfo/>
         </div>
     )
 }

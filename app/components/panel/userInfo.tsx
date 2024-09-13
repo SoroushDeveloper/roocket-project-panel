@@ -22,9 +22,9 @@ const UserInfo = () => {
     return (
         <>
             <div className="flex flex-col sm:flex-row justify-between items-center p-5">
-                <h1 className="text-4xl">
+                <h2 className="text-3xl">
                     Welcome {user}
-                </h1>
+                </h2>
                 <div className="mt-5 sm:mt-0 flex">
                     <Link href="/panel/profile"
                         className="mr-5 bg-none text-yellow-500 border-yellow-500 border-2 hover:bg-yellow-500 hover:text-white dark:hover:text-black rounded p-2 flex">
@@ -44,27 +44,27 @@ const UserInfo = () => {
                 </div>
             </div>
             <Hr my={false}/>
-            <h2 className="text-3xl text-center mt-5">
+            <h3 className="text-2xl text-center mt-5">
                 Quick Links
-            </h2>
+            </h3>
             <br/>
-            <div className="flex flex-col sm:flex-row justify-center space-x-5">
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-5">
                 <Link href="/panel/categories"
-                    className="bg-none text-purple-500 border-purple-500 border-2 hover:bg-purple-500 hover:text-white dark:hover:text-black rounded p-2 flex">
+                    className="bg-none text-purple-500 border-purple-500 border-2 hover:bg-purple-500 hover:text-white dark:hover:text-black rounded p-2 flex w-full sm:w-fit">
                     <FolderIcon className="flex-shrink-0 h-6 w-6"/>
                     <span className="ms-3">
                         Article Categories
                     </span>
                 </Link>
                 <Link href="/panel/articles"
-                    className="bg-none text-purple-500 border-purple-500 border-2 hover:bg-purple-500 hover:text-white dark:hover:text-black rounded p-2 flex">
+                    className="bg-none text-purple-500 border-purple-500 border-2 hover:bg-purple-500 hover:text-white dark:hover:text-black rounded p-2 flex w-full sm:w-fit">
                     <NewspaperIcon className="flex-shrink-0 h-6 w-6"/>
                     <span className="ms-3">
                         Articles
                     </span>
                 </Link>
                 <Link href="/panel/contacts"
-                    className="bg-none text-purple-500 border-purple-500 border-2 hover:bg-purple-500 hover:text-white dark:hover:text-black rounded p-2 flex">
+                    className="bg-none text-purple-500 border-purple-500 border-2 hover:bg-purple-500 hover:text-white dark:hover:text-black rounded p-2 flex w-full sm:w-fit">
                     <UsersIcon className="flex-shrink-0 h-6 w-6"/>
                     <span className="ms-3">
                         Contacts
