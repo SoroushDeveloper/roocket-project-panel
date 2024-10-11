@@ -13,6 +13,7 @@ import ShowComment from "@/app/components/panel/articles/comments/show";
 import Pagination from "@/app/components/shared/pagination";
 import Link from "next/link";
 import {ChevronLeftIcon} from "@heroicons/react/24/solid";
+import Back from "@/app/components/shared/back";
 
 const Comments: NextPageWithLayout = () => {
     const cookie = new Cookies;
@@ -103,7 +104,7 @@ const Comments: NextPageWithLayout = () => {
                     </h1>
                     <div className="mt-3 sm:mt-0 flex items-center">
                         <Link href="/panel/articles"
-                            className="mr-2 rounded flex items-center bg-none border-2 border-gray-500 p-2 text-gray-500 hover:bg-gray-500 hover:text-gray-100 hover:dark:text-gray-900">
+                            className="mr-2 rounded hidden sm:flex items-center bg-none border-2 border-gray-500 p-2 text-gray-500 hover:bg-gray-500 hover:text-gray-100 hover:dark:text-gray-900">
                             <ChevronLeftIcon className="flex-shrink-0 h-5 w-5 mr-2"/>
                             Articles
                         </Link>
@@ -156,6 +157,7 @@ const Comments: NextPageWithLayout = () => {
             <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}/>
             <ShowComment showModal={showModal} hideModal={hideModalHandler}
                          commentId={commentId} setCommentStatus={setCommentStatus}/>
+            <Back/>
         </>
     )
 }

@@ -10,6 +10,7 @@ import callApi from "@/app/helpers/callApi";
 import Fail from "@/app/components/toasts/fail";
 import EditArticleForm from "@/app/forms/panel/article/editArticleForm";
 import {ArticleFormValuesInterface} from "@/app/contracts/panel";
+import Back from "@/app/components/shared/back";
 
 const EditArticle: NextPageWithLayout = () => {
     const cookie = new Cookies;
@@ -41,13 +42,14 @@ const EditArticle: NextPageWithLayout = () => {
                     Edit Article
                 </h1>
                 <Link href="/panel/articles"
-                      className="rounded flex items-center bg-none border-2 border-gray-500 p-2 text-gray-500 hover:bg-gray-500 hover:text-gray-100 hover:dark:text-gray-900">
+                      className="hidden sm:flex rounded items-center bg-none border-2 border-gray-500 p-2 text-gray-500 hover:bg-gray-500 hover:text-gray-100 hover:dark:text-gray-900">
                     <ChevronLeftIcon className="flex-shrink-0 h-5 w-5 mr-2"/>
                     Back to Articles
                 </Link>
             </div>
             <Hr my={true}/>
             {article && <EditArticleForm article={article}/>}
+            <Back/>
         </div>
     )
 }
