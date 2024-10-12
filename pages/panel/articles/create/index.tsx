@@ -5,6 +5,7 @@ import React from "react";
 import Link from "next/link";
 import {ChevronLeftIcon} from "@heroicons/react/24/solid";
 import CreateArticleForm from "@/app/forms/panel/article/createArticleForm";
+import Back from "@/app/components/shared/back";
 
 const CreateArticle: NextPageWithLayout = () => {
     return (
@@ -21,6 +22,7 @@ const CreateArticle: NextPageWithLayout = () => {
             </div>
             <Hr my={true}/>
             <CreateArticleForm/>
+            <Back/>
         </div>
     )
 }
